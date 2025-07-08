@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using WebAPICourse.Models.DatabaseContext;
 
 namespace WebAPICourse
 {
@@ -28,6 +30,9 @@ namespace WebAPICourse
         {
 
             services.AddControllers();
+            string ConnectionString = "Data Source=.;Initial Catalog=DBApiSample; Integrated security = true";
+            services.AddEntityFrameworkSqlServer()
+                .AddDbContext<MDataBaseContext>(options => options.UseSqlServer(ConnectionString));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPICourse", Version = "v1" });
