@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 namespace WebAPICourse.Controllers
 {
     [ApiController]
+   // [Route("api/v{version:apiVersion}/[controller]")]
     [Route("[controller]")]
+    [ApiVersion("4",Deprecated = true)]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
@@ -23,7 +25,7 @@ namespace WebAPICourse.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
+        [HttpGet("get")]
         public IEnumerable<WeatherForecast> Get()
         {
             var rng = new Random();
